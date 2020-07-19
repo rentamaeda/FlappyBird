@@ -13,6 +13,7 @@
 		3743E9EB24C340D3006CD014 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3743E9E924C340D3006CD014 /* Main.storyboard */; };
 		3743E9ED24C340D6006CD014 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3743E9EC24C340D6006CD014 /* Assets.xcassets */; };
 		3743E9F024C340D6006CD014 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3743E9EE24C340D6006CD014 /* LaunchScreen.storyboard */; };
+		3743E9F824C34431006CD014 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3743E9F724C34431006CD014 /* GameScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		3743E9EC24C340D6006CD014 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3743E9EF24C340D6006CD014 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3743E9F124C340D6006CD014 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3743E9F724C34431006CD014 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				3743E9E324C340D3006CD014 /* AppDelegate.swift */,
+				3743E9F724C34431006CD014 /* GameScene.swift */,
 				3743E9E524C340D3006CD014 /* SceneDelegate.swift */,
 				3743E9E724C340D3006CD014 /* ViewController.swift */,
 				3743E9E924C340D3006CD014 /* Main.storyboard */,
@@ -140,6 +143,7 @@
 			files = (
 				3743E9E824C340D3006CD014 /* ViewController.swift in Sources */,
 				3743E9E424C340D3006CD014 /* AppDelegate.swift in Sources */,
+				3743E9F824C34431006CD014 /* GameScene.swift in Sources */,
 				3743E9E624C340D3006CD014 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,7 +298,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.techacademy.renta.Maeda.FlappyBird;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -312,7 +316,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.techacademy.renta.Maeda.FlappyBird;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
