@@ -14,7 +14,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate /* 追加 */ {
        let wallCategory: UInt32 = 1 << 2       // 0...00100
        let scoreCategory: UInt32 = 1 << 3      // 0...01000
      let itemCategory: UInt32 = 0b11           //アイテムカテゴリ
-        let itemscoreCategory: UInt32 = 0b111//アイテムスコアカテゴリ
+        //let itemscoreCategory: UInt32 = 0b111//アイテムスコアカテゴリ
        // スコア用
        var score = 0  // ←追加
     var itemscore =  0
@@ -259,9 +259,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate /* 追加 */ {
 //アイテム設定
     func setupitem(){
         //初期設定
-        let itemTexture = SKTexture(imageNamed: "mouse")
-        itemTexture.filteringMode = .nearest
-        item = SKSpriteNode(texture: itemTexture)
+        let itemTexture = SKTexture(imageNamed: "mouse")//画像読み込み
+        itemTexture.filteringMode = .nearest//画像の荒さ
+        item = SKSpriteNode(texture: itemTexture)//表示
 //
                // 移動する距離を計算
                let movingDistance = CGFloat(self.frame.size.width + itemTexture.size().width)
@@ -273,7 +273,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate /* 追加 */ {
                let removeWall = SKAction.removeFromParent()
 
                // 2つのアニメーションを順に実行するアクションを作成
-               let wallAnimation = SKAction.sequence([moveWall, removeWall])
+        _ = SKAction.sequence([moveWall, removeWall])
 
                // 鳥の画像サイズを取得
                let birdSize = SKTexture(imageNamed: "bird_a").size()
@@ -303,7 +303,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate /* 追加 */ {
 
                    // 下側の壁を作成
                    let under = SKSpriteNode(texture: itemTexture)
-                   under.position = CGPoint(x: 0, y: under_wall_y+50)
+                   under.position = CGPoint(x: 0, y: under_wall_y)
 
                    // スプライトに物理演算を設定する
                    under.physicsBody = SKPhysicsBody(rectangleOf: itemTexture.size())
@@ -315,20 +315,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate /* 追加 */ {
                    wall.addChild(under)
 
                  
-                   // スコアアップ用のノード --- ここから ---
+                 /*  // スコアアップ用のノード --- ここから ---
                    let itemscoreNode = SKNode()
-                  // scoreNode.position = CGPoint(x: upper.size.width + birdSize.width / 2, y: self.frame.height / 2)
-                   //scoreNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: upper.size.width, height: self.frame.size.height))
+                   itemscoreNode.position = CGPoint(x: under.size.width + birdSize.width / 2, y: self.frame.height / 2)
+                   itemscoreNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: under.size.width, height: self.frame.size.height))
                    itemscoreNode.physicsBody?.isDynamic = false
                    itemscoreNode.physicsBody?.categoryBitMask = self.itemscoreCategory
                    itemscoreNode.physicsBody?.contactTestBitMask = self.birdCategory
 
                    wall.addChild(itemscoreNode)
-                   // --- ここまで追加 ---
+                   */// --- ここまで追加 ---
 
-                   wall.run(wallAnimation)
+                 //  wall.run(wallAnimation)
 
-                   self.wallNode.addChild(wall)
+                   //self.wallNode.addChild(wall)
                })
 
                // 次の壁作成までの時間待ちのアクションを作成
@@ -388,7 +388,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate /* 追加 */ {
                return
            }
 
-           if (contact.bodyA.categoryBitMask & scoreCategory) == scoreCategory || (contact.bodyB.categoryBitMask & scoreCategory) == scoreCategory {
+           if (contact.bodyA.categoryBitMask & itemCategory) == itemCategory || (contact.bodyB.categoryBitMask & itemCategory) == itemCategory {
                // スコア用の物体と衝突した
                print("ScoreUp")
                score += 1
@@ -402,16 +402,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate /* 追加 */ {
                    userDefaults.set(bestScore, forKey: "BEST")
                    userDefaults.synchronize()
                }
+            //アイテムと鳥の衝突判定
+
+            /*if (contact.bodyA.categoryBitMask & itemCategory) == itemCategory || (contact.bodyB.categoryBitMask & itemCategory) == itemCategory {
+                               // スコア用の物体と衝突した
+                               print("アイテム獲得")
+                     itemscore += 1
+                     itemscoreLabelNode.text = "ItemScore:\(itemscore)"    // ←追加
+                     }*/
            }
-//アイテムと鳥の衝突判定
-            else if (contact.bodyA.categoryBitMask & itemscoreCategory) == itemscoreCategory || (contact.bodyB.categoryBitMask & itemscoreCategory) == itemscoreCategory {
-                      // スコア用の物体と衝突した
-                      print("アイテム獲得")
-            itemscore += 1
-            itemscoreLabelNode.text = "ItemScore:\(itemscore)"    // ←追加
-                      item.removeFromParent()
-                  }
-           
+          
            else {
                // 壁か地面と衝突した
                print("GameOver")
